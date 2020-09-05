@@ -1,52 +1,58 @@
 ﻿using System;
-using System.Text;
 
 namespace Library
 {
     public class AppointmentService
     {
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
+        
+        public void CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
         {
-            StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
             Boolean isValid = true;
-
-            if (string.IsNullOrEmpty(name))//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
+            if (Verificador.Verificar(name) != true)//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
             {
-                stringBuilder.Append("Unable to schedule appointment, Name is required\n");
                 isValid = false;
+                string nombre_string = "Name";
+                Creador_cadenas.Creador_invalido(nombre_string);
             }
 
-            if (string.IsNullOrEmpty(id))//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
+            if (Verificador.Verificar(id) != true)//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
             {
-                stringBuilder.Append("Unable to schedule appointment, id is required\n");
                 isValid = false;
+                string id_string = "Id";
+                Creador_cadenas.Creador_invalido(id_string);      
             }
 
-            if (string.IsNullOrEmpty(phoneNumber))//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
+            if (Verificador.Verificar(phoneNumber) != true)//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
             {
-                stringBuilder.Append("Unable to schedule appointment, Phone number is required\n");
                 isValid = false;
+                string numero_string = "Phone number";
+                Creador_cadenas.Creador_invalido(numero_string);
+                
             }
 
-            if (string.IsNullOrEmpty(appoinmentPlace))//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
+            if (Verificador.Verificar(appoinmentPlace) != true)//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
             {
-                stringBuilder.Append("Unable to schedule appointment, Appoinment place is required\n");
                 isValid = false;
+                string lugar_string = "Appoinment Place";
+                Creador_cadenas.Creador_invalido(lugar_string);
+                
             }
 
-            
-            if (string.IsNullOrEmpty(doctorName))//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
+            if (Verificador.Verificar(doctorName) != true)//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
             {
-                stringBuilder.Append("Unable to schedule appointment, Doctor name is required\n");
                 isValid = false;
+                string doctor_string = "Doctor´s Name";
+                Creador_cadenas.Creador_invalido(doctor_string);
+                
             }
 
             if (isValid)//Es posible crear una funcion que haga esta revision y de ser necesario devuelva un string.
             {
-                stringBuilder.Append("Appoinment Scheduled");
+                Creador_cadenas.Creador_valido();
             }
 
-            return stringBuilder.ToString();
+            Printer.Imprimir(Creador_cadenas.Cadena)
+
         }
 
     }
